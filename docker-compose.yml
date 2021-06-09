@@ -1,0 +1,40 @@
+version: '3.1'
+services:
+    meedu:
+        image: "baiyuetribe/meedu"
+        restart: always
+        container_name: meedu         
+        networks:
+            - frontend
+            - backend
+        ports:
+          - 80:80 
+        volumes:
+          - /opt/meedu/code:/meedu          
+        depends_on:
+          - mysql
+    mysql:
+        image: "mysql:5.6"
+        restart: always
+        environment:
+          TZ: 'Asia/Shanghai'
+          MYSQL_DATABASE: meedu
+          MYSQL_ROOT_PASSWORD: 123456
+        volumes:
+          - /opt/meedu/mysql:/var/lib/mysql
+        networks:
+            - backend
+    kodexplorer:
+        image: baiyuetribe/kodexplorer
+        restart: always
+        ports:
+          - 999:80
+        volumes:
+          - /opt/meedu/:/code
+        networks:
+          - backend 
+        depends_on:
+          - meedu                
+networks:
+    frontend:
+    backend:
