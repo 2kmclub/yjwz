@@ -116,8 +116,6 @@ notice2(){
     green "搭建成功，现在您可以直接访问了"
     green "---------------------------"
     green " 首页地址： http://ip"
-    green " 后台地址：http://ip/backend/login"
-    green " 文件管理器：http://ip:999"
     green "---------------------------"
     white "其他信息"
     white "网页源文件路径：/opt/meedu/code"
@@ -128,9 +126,9 @@ notice2(){
 # 开始安装meedu
 install_main(){
     blue "获取配置文件"
-    mkdir -p /opt/meedu && cd /opt/meedu
+    #mkdir -p /opt/meedu && cd /opt/meedu
     rm -f docker-compose.yml  
-    wget https://github.com/2kmclub/yjwz/blob/main/docker-compose.yml      
+    wget https://raw.githubusercontent.com/2kmclub/yjwz/main/docker-compose.yml      
     blue "配置文件获取成功"
     greenbg "首次启动会拉取镜像，国内速度比较慢，请耐心等待完成"
     docker-compose up -d
@@ -179,7 +177,7 @@ start_menu(){
     yellow "国内服务器下载镜像稍慢，请耐心等待"
     echo
     white "—————————————程序安装——————————————"
-    white "1.安装meedu"
+    white "1.安装可道云"
     white "—————————————杂项管理——————————————"
     white "2.停止meedu"
     white "3.重启meedu"
